@@ -1,0 +1,123 @@
+#spring.config.activate.on-profile: default_profile
+
+server:
+  port: 8000
+spring:
+  application:
+    name: apigateway-service
+  cloud:
+    gateway:
+      default-filters:
+        - name: GlobalFilter
+          args:
+            baseMessage: Spring Cloud BaseMessage GlobalFilter
+            preLogger: true
+            postLogger: true
+      routes:
+        - id: ap-samplea
+          uri: lb://SAMPLEA
+          predicates:
+            - Path=/samplea/**
+        - id: ap-sampleb
+          uri: lb://SAMPLEB
+          predicates:
+            - Path=/sampleb/**
+
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/login
+            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/users
+            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/health_check
+            - Method=GET
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+        #      actuator관련
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/actuator/**
+            - Method=GET,POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/**
+            - Method=GET
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+
+        - id: catalog-service
+          uri: lb://CATALOG-SERVICE
+          predicates:
+            - Path=/catalog-service/**
+        #      actuator관련
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order-service/actuator/**
+            - Method=GET,POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/order-service/(?<segment>.*), /$\{segment}
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order-service/**
+
+
+        - id: first-service
+          #          uri: http://localhost:8081
+          uri: lb://MY-FIRST-SERVICE      #Eureka 연동(대문자)
+          predicates:
+            - Path=/first-service/**
+        #yaml을 이용한 필터 추가하기
+        #          filters:
+        #            - AddRequestHeader=first-request, first-request-header2
+        #            - AddResponseHeader=first-response, first-response-header2
+        #            - CustomFilter
+
+        - id: second-service
+          #          uri: http://localhost:8082
+          uri: lb://MY-SECOND-SERVICE     #Eureka 연동(대문자)
+          predicates:
+            - Path=/second-service/**
+#          filters:
+#            - AddRequestHeader=second-request, second-request-header2
+#            - AddResponseHeader=second-response, second-response-header2
+#            - name: CustomFilter
+#            - name: LoggingFilter
+#              args:
+#                baseMessage: Hi, there.
+#                preLogger: true
+#                postLogger: true
+
+#token:
+#  expiration_time:  86400000
+#  secret:  user_token
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, httptrace, busrefresh , info, metrics, prometheus

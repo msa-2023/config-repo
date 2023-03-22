@@ -1,0 +1,19 @@
+#Local Exec
+#spring.config.activate.on-profile: local_profile
+spring:
+  rabbitmq:
+    host: inno3t2  #127.0.0.1
+    port: 4102     #5672
+    username: guest
+    password: guest
+
+eureka:
+  instance:
+#    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+#      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://inno3t2:4112/eureka
