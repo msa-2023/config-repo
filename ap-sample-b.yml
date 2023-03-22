@@ -1,0 +1,30 @@
+#spring.profiles: default
+#spring.config.activate.on-profile: default_profile
+
+server.servlet.context-path: /sampleb
+
+#The default binder to use, if multiple binders are configured. See Multiple Binders on the Classpath.
+spring.cloud.stream.default-binder: kafka
+
+spring:
+  application:
+    name: sampleb
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher     #Swagger 관련 수정
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    generate-ddl: true
+    hibernate.ddl-auto: update
+  cloud:
+    stream:
+      bindings:
+        in-sampleAChanged: #입력(Consumer) 채널 (in-토픽이름)
+          destination: sampleAChanged   #토픽이름
+          contentType: application/json    #데이터형식
+          group: CGR-sampleb-sampleAChanged  #consumer 그룹: CGR-MSA이름-토픽이름
+hibernate.dialect: org.hibernate.dialect.MySQLInnoDBDialect
+
