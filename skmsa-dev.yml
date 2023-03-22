@@ -1,0 +1,5 @@
+token:
+  expiration_time: 800000001
+  secret: skmsa-dev
+gateway.ip: 10.200.0.1
+only.dev: skmsa-dev

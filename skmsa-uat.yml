@@ -1,0 +1,5 @@
+token:
+  expiration_time: 80000006
+  secret: skmsa-uat
+gateway.ip: 10.200.0.1  
+

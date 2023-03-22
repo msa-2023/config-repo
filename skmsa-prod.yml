@@ -1,0 +1,5 @@
+token:
+  expiration_time: 80000003
+  secret: skmsa-prod
+gateway.ip: 10.200.0.1  
+
