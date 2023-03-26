@@ -45,3 +45,8 @@ management.endpoints.web.exposure.include: "*"
 #management.endpoints.web.cors.allowed-origins: http://other-domain.com
 #management.endpoints.web.cors.allowed-methods: GET,POST
 
+
+logging:
+  level:
+    # Feign Client 용
+    sample.a: DEBUG
