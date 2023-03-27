@@ -14,8 +14,19 @@ spring:
     username: user
     password: pwd
     hikari.initializationFailTimeout: 30000
+  zipkin:
+    base-url: http://zipkin:9411
+    enabled: true
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+
+
 eureka:
   instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     prefer-ip-address: true
   client:
     service-url:
