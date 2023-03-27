@@ -4,8 +4,8 @@ server.port: 8091
 
 spring:
   cloud:
-#    config:
-#      enabled=false:   #No spring.config.import property has been defined
+    config:
+      enabled=true:   #No spring.config.import property has been defined
     stream:
       kafka:
         binder:
@@ -32,8 +32,10 @@ eureka:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     prefer-ip-address: true
   client:
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
-      defaultZone: http://inno3t2:4116/eureka  # default addre [8761 -> 4116]
+      defaultZone: http://inno3t2:4116/eureka   # default addre [8761 -> 4116]
 
 
 # MONGODB (MongoProperties)[27017 - 4197]

@@ -4,7 +4,7 @@
 server.servlet.context-path: /sampleb
 
 #The default binder to use, if multiple binders are configured. See Multiple Binders on the Classpath.
-spring.cloud.stream.default-binder: kafka
+#spring.cloud.stream.default-binder: kafka
 
 spring:
   application:
