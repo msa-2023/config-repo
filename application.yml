@@ -9,3 +9,4 @@ spring.cloud.bus.enabled: true
 spring.cloud.bus.refresh.enabled: true
 spring.cloud.bus.env.enabled: true
 spring.cloud.bus.trace.enabled: true
+management.endpoint.refresh.enabled: true
