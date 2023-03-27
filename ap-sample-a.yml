@@ -50,3 +50,6 @@ logging:
   level:
     # Feign Client 용
     sample.a: DEBUG
+
+
+message.feign.404: "잠시 시스템 점검 중입니다.(Feign 404)"
