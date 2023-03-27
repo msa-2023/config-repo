@@ -6,6 +6,6 @@ gateway.ip: 10.200.0.1
 only.application: application.yml
 #
 spring.cloud.bus.enabled: true
-spring.cloud.bus.refresh.enabled: true
-spring.cloud.bus.env.enabled: true
+#spring.cloud.bus.refresh.enabled: true
+#spring.cloud.bus.env.enabled: true
 spring.cloud.bus.trace.enabled: true
