@@ -3,6 +3,11 @@
 server.port: 8091
 
 spring:
+  rabbitmq:
+    host: inno3t2
+    port: 4102      #5672
+    username: guest
+    password: guest
   cloud:
     config:
       enabled=true:   #No spring.config.import property has been defined
@@ -51,11 +56,6 @@ spring:
   zipkin:
     base-url: http://inno3t2:4126
     enabled: true
-  rabbitmq:
-    host: inno3t2
-    port: 4102      #5672
-    username: guest
-    password: guest
 
 eureka:
   instance:

@@ -34,7 +34,6 @@ management.metrics.export.prometheus.enabled: true
 management.endpoints.web.exposure.include: "*" #3/27일 변경 (sampleb에도 동일하게 추가함)
 
 
-
 #gateway.ip: 192.168.1.115  ==> Application yaml로 이동
 
 

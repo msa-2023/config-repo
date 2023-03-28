@@ -6,8 +6,8 @@ server.servlet.context-path: /samplea
 #The default binder to use, if multiple binders are configured. See Multiple Binders on the Classpath.
 #spring.cloud.stream.default-binder: kafka
 spring.cloud.stream.defaultBinder: rabbit
-#spring.cloud.stream.bindings.input.binder: rabbit
-#spring.cloud.stream.bindings.output.binder: rabbit
+spring.cloud.stream.bindings.input.binder: rabbit
+spring.cloud.stream.bindings.output.binder: rabbit
 
 spring:
   application:
@@ -37,6 +37,8 @@ management.endpoint.metrics.enabled: true
 management.endpoint.prometheus.enabled: true
 management.metrics.export.prometheus.enabled: true
 management.endpoints.web.exposure.include: "*" #3/27일 변경 (sampleb에도 동일하게 추가함)
+spring.cloud.bus.trace.enabled: true
+
 #management.endpoints.web.exposure.include: refresh, health, beans, busrefresh, info, metrics, prometheus
 
 #management.endpoints.web.exposure.include: prometheus,health,info,metric
