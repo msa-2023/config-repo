@@ -13,8 +13,11 @@ spring:
           destination: sampleAChanged   #토픽이름
           contentType: application/json    #데이터형식
           binder: kafka-listen
-        out-config: 
+        in-config:
           binder: rabbit
+        out-config:
+          binder: rabbit
+
       binders:
         kafka-listen:      
           type: kafka

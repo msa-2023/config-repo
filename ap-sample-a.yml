@@ -7,7 +7,7 @@ server.servlet.context-path: /samplea
 #spring.cloud.stream.default-binder: kafka
 spring.cloud.stream.defaultBinder: rabbit
 #spring.cloud.stream.bindings.input.binder: rabbit
-spring.cloud.stream.bindings.output.binder: rabbit
+#spring.cloud.stream.bindings.output.binder: rabbit
 
 spring:
   application:
