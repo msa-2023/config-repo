@@ -5,9 +5,9 @@ server.servlet.context-path: /samplea
 
 #The default binder to use, if multiple binders are configured. See Multiple Binders on the Classpath.
 #spring.cloud.stream.default-binder: kafka
-spring.cloud.stream.defaultBinder: rabbit
-spring.cloud.stream.bindings.input.binder: rabbit
-spring.cloud.stream.bindings.output.binder: rabbit
+spring.cloud.stream.defaultBinder: rabbitmq
+spring.cloud.stream.bindings.input.binder: rabbitmq
+spring.cloud.stream.bindings.output.binder: rabbitmq
 
 spring:
   application:
