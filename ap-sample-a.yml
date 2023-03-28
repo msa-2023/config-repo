@@ -36,8 +36,8 @@ hibernate.dialect: org.hibernate.dialect.MySQLInnoDBDialect
 management.endpoint.metrics.enabled: true
 management.endpoint.prometheus.enabled: true
 management.metrics.export.prometheus.enabled: true
-#management.endpoints.web.exposure.include: "*" 3/27일 변경 (sampleb에도 동일하게 추가함)
-management.endpoints.web.exposure.include: refresh, health, beans, busrefresh, info, metrics, prometheus
+management.endpoints.web.exposure.include: "*" #3/27일 변경 (sampleb에도 동일하게 추가함)
+#management.endpoints.web.exposure.include: refresh, health, beans, busrefresh, info, metrics, prometheus
 
 #management.endpoints.web.exposure.include: prometheus,health,info,metric
 
