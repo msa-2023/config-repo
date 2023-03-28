@@ -7,7 +7,7 @@ server.servlet.context-path: /samplea
 #spring.cloud.stream.default-binder: kafka
 spring.cloud.stream.defaultBinder: rabbit
 #spring.cloud.stream.bindings.input.binder: rabbit
-#spring.cloud.stream.bindings.output.binder: rabbit
+spring.cloud.stream.bindings.output.binder: rabbit
 
 spring:
   application:
@@ -22,13 +22,13 @@ spring:
         format_sql: true
     generate-ddl: true
     hibernate.ddl-auto: update
-  cloud:
-    stream:
-      bindings:
+#  cloud:
+#    stream:
+#      bindings:
         # 강의 변경 내역 공유(kafka 변경 내용 등록)
-        out-sampleAChanged:   #출력(Producer) 채널 (consumer-MSA이름-토픽이름)
-          destination: sampleAChanged   #토픽이름
-          contentType: application/json    #데이터형식
+#        out-sampleAChanged:   #출력(Producer) 채널 (consumer-MSA이름-토픽이름)
+#          destination: sampleAChanged   #토픽이름
+#          contentType: application/json    #데이터형식
 
 hibernate.dialect: org.hibernate.dialect.MySQLInnoDBDialect
 
