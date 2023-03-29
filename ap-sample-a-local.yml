@@ -18,10 +18,10 @@ spring:
           destination: sampleAChanged   #토픽이름
           contentType: application/json    #데이터형식
           binder: kafka-listen
-        in-config:
-          binder: rabbit
-        out-config:
-          binder: rabbit
+#        in-config:
+#          binder: rabbit
+#        out-config:
+#          binder: rabbit
 
       binders:
         kafka-listen:      
@@ -35,17 +35,17 @@ spring:
                       brokers: "inno3t2"
                       defaultBrokerPort: 4192
                       autoCreateTopics: false          
-        rabbit:
-          defaultCandidate: false
-          inheritEnvironment: false
-          type: rabbit
-          environment:
-            spring:
-              rabbitmq:
-                addresses: inno3t2:4102
-                userName: guest
-                password: guest
-                virtual-host:
+#        rabbit:
+#          defaultCandidate: false
+#          inheritEnvironment: false
+#          type: rabbit
+#          environment:
+#            spring:
+#              rabbitmq:
+#                addresses: inno3t2:4102
+#                userName: guest
+#                password: guest
+#                virtual-host:
   datasource:
 #    url: jdbc:mysql://mysql/samplea?useUnicode=true&serverTimezone=Asia/Seoul
     url: jdbc:mariadb://inno3t2:4121/samplea?useUnicode=true&serverTimezone=Asia/Seoul
