@@ -74,4 +74,3 @@ spring.data.mongodb.uri: mongodb://inno3t2:4197/SKMSA
 #Zipkin
 #spring.zipkin.base-url: http://inno3t2:4126/    #[9411 -> 4126]
 #logging.pattern.console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}] [%thread] %-5level %logger{36} - %msg%n"
-
