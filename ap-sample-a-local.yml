@@ -13,28 +13,17 @@ spring:
       enabled=true:   #No spring.config.import property has been defined
     stream:
       bindings:
+        in-config:
+          binder: rabbit
+#        out-config:
+#          binder: rabbit
         # 강의 변경 내역 공유(kafka 변경 내용 등록)
         out-sampleAChanged:   #출력(Producer) 채널 (consumer-MSA이름-토픽이름)
           destination: sampleAChanged   #토픽이름
           contentType: application/json    #데이터형식
           binder: kafka-listen
-#        in-config:
-#          binder: rabbit
-#        out-config:
-#          binder: rabbit
 
       binders:
-        kafka-listen:      
-          type: kafka
-          environment:
-            spring:
-              cloud:
-                stream:
-                  kafka:
-                    binder:
-                      brokers: "inno3t2"
-                      defaultBrokerPort: 4192
-                      autoCreateTopics: false          
         rabbit:
           defaultCandidate: false
           inheritEnvironment: false
@@ -46,6 +35,17 @@ spring:
                 userName: guest
                 password: guest
                 virtual-host:
+        kafka-listen:      
+          type: kafka
+          environment:
+            spring:
+              cloud:
+                stream:
+                  kafka:
+                    binder:
+                      brokers: "inno3t2"
+                      defaultBrokerPort: 4192
+                      autoCreateTopics: false          
   datasource:
 #    url: jdbc:mysql://mysql/samplea?useUnicode=true&serverTimezone=Asia/Seoul
     url: jdbc:mariadb://inno3t2:4121/samplea?useUnicode=true&serverTimezone=Asia/Seoul
