@@ -13,26 +13,16 @@ spring:
       enabled=true:   #No spring.config.import property has been defined
     stream:
       bindings:
-        out-accountAcctChanged:   #출력(Producer) 채널 (consumer-MSA이름-토픽이름)
+        in-config:
+          binder: rabbit
+        #        out-config:
+        #          binder: rabbit
+        # 강의 변경 내역 공유(kafka 변경 내용 등록)
+        out-accountAcctChanged: #출력(Producer) 채널 (consumer-MSA이름-토픽이름)
           destination: accountAcctChanged   #토픽이름
           contentType: application/json    #데이터형식
           binder: kafka-listen
-        in-config:
-          binder: rabbit
-        out-config:
-          binder: rabbit
       binders:
-        kafka-listen:
-          type: kafka
-          environment:
-            spring:
-              cloud:
-                stream:
-                  kafka:
-                    binder:
-                      brokers: kafka
-                      defaultBrokerPort: 9092
-                      autoCreateTopics: false
         rabbit:
           defaultCandidate: false
           inheritEnvironment: false
@@ -44,9 +34,20 @@ spring:
                 userName: guest
                 password: guest
                 virtual-host:
+        kafka-listen:
+          type: kafka
+          environment:
+            spring:
+              cloud:
+                stream:
+                  kafka:
+                    binder:
+                      brokers: "inno3t2"
+                      defaultBrokerPort: 4192
+                      autoCreateTopics: false
   datasource:
     #    url: jdbc:mysql://mysql/samplea?useUnicode=true&serverTimezone=Asia/Seoul
-    url: jdbc:mariadb://inno3t2:4121/sk_msa?useUnicode=true&serverTimezone=Asia/Seoul
+    url: jdbc:mariadb://inno3t2:4121/orderdb?useUnicode=true&serverTimezone=Asia/Seoul
     #   url: jdbc:mysql://vm-mysql13.mysql.database.azure.com:3306/samplea?useUnicode=true&serverTimezone=Asia/Seoul
     username: user
     password: pwd
@@ -54,7 +55,6 @@ spring:
   zipkin:
     base-url: http://inno3t2:4126
     enabled: true
-
 
 eureka:
   instance:
@@ -66,10 +66,10 @@ eureka:
     service-url:
       defaultZone: http://inno3t2:4116/eureka   # default addre [8761 -> 4116]
 
+
 # MONGODB (MongoProperties)[27017 - 4197]
 spring.data.mongodb.uri: mongodb://inno3t2:4197/SKMSA
 
 #Zipkin
-spring.zipkin.base-url: http://inno3t2:4126/    #[9411 -> 4126]
-logging.pattern.console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}] [%thread] %-5level %logger{36} - %msg%n"
-
+#spring.zipkin.base-url: http://inno3t2:4126/    #[9411 -> 4126]
+#logging.pattern.console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}] [%thread] %-5level %logger{36} - %msg%n"
