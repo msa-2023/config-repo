@@ -1,6 +1,6 @@
 #Local Exec
 #spring.config.activate.on-profile: local_profile
-server.port: 8071
+server.port: 8093
 
 spring:
   rabbitmq:
