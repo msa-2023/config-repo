@@ -47,7 +47,7 @@ spring:
                       autoCreateTopics: false
   datasource:
     #    url: jdbc:mysql://mysql/samplea?useUnicode=true&serverTimezone=Asia/Seoul
-    url: jdbc:mariadb://inno3t2:4121/orderdb?useUnicode=true&serverTimezone=Asia/Seoul
+    url: jdbc:mariadb://inno3t2:4121/sk_msa?useUnicode=true&serverTimezone=Asia/Seoul
     #   url: jdbc:mysql://vm-mysql13.mysql.database.azure.com:3306/samplea?useUnicode=true&serverTimezone=Asia/Seoul
     username: user
     password: pwd
