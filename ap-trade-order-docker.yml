@@ -1,0 +1,85 @@
+#Docker
+#spring.config.activate.on-profile: docker_profile
+server.port: 0
+#
+spring:
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    config:
+      enabled=true:   #No spring.config.import property has been defined
+    stream:
+      bindings:
+        in-accountAcctChanged: #입력(Consumer) 채널 (in-토픽이름)
+          destination: accountAcctChanged   #토픽이름
+          contentType: application/json    #데이터형식
+          group: CGR-trade-accountAcctChanged  #consumer 그룹: CGR-MSA이름-토픽이름
+          binder: kafka-listen
+        # 강의 변경 내역 공유(kafka 변경 내용 등록)
+        out-tradeOrderChanged:   #출력(Producer) 채널 (consumer-MSA이름-토픽이름)
+          destination: tradeOrderAChanged   #토픽이름
+          contentType: application/json    #데이터형식
+          binder: kafka-listen
+        out-tradeContractChanged: #출력(Producer) 채널 (consumer-MSA이름-토픽이름)
+          destination: tradeContractChanged   #토픽이름
+          contentType: application/json    #데이터형식
+          binder: kafka-listen
+        in-config:
+          binder: rabbit
+        out-config:
+          binder: rabbit
+
+      binders:
+        kafka-listen:
+          type: kafka
+          environment:
+            spring:
+              cloud:
+                stream:
+                  kafka:
+                    binder:
+                      brokers: kafka
+                      defaultBrokerPort: 9092
+                      autoCreateTopics: false
+        rabbit:
+          defaultCandidate: false
+          inheritEnvironment: false
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                addresses: inno3t2:4102
+                userName: guest
+                password: guest
+                virtual-host:
+  datasource:
+    #    url: jdbc:mysql://mysql/samplea?useUnicode=true&serverTimezone=Asia/Seoul
+    url: jdbc:mariadb://mariadb:3306/orderdb?useUnicode=true&serverTimezone=Asia/Seoul    #[ [3306 -> 4121]
+    #   url: jdbc:mysql://vm-mysql13.mysql.database.azure.com:3306/samplea?useUnicode=true&serverTimezone=Asia/Seoul
+    username: user
+    password: pwd
+    hikari.initializationFailTimeout: 30000
+  zipkin:
+    base-url: http://zipkin:9411
+    enabled: true
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://apigate-service:8761/eureka  # default addre [8761 -> 4116]
+
+
+# MONGODB (MongoProperties)
+spring.data.mongodb.uri: mongodb://mongo:27017/SKMSA      #[27017 - 4197]
+
+#Zipkin
+spring.zipkin.base-url: http://zipkin:9411/    #[9411 -> 4126]
+logging.pattern.console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}] [%thread] %-5level %logger{36} - %msg%n"
