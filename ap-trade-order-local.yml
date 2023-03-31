@@ -15,7 +15,7 @@ spring:
       bindings:
         in-config:
           binder: rabbit
-#        out-config:
+#        out-config:1
 #          binder: rabbit
         # 강의 변경 내역 공유(kafka 변경 내용 등록)
         in-accountAcctChanged: #입력(Consumer) 채널 (in-토픽이름)
