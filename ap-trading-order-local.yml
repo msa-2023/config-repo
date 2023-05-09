@@ -14,7 +14,7 @@ spring:
     stream:
       bindings:
         in-config:
-          binder: rabbit
+          binder: kafka-listen
         out-tradingChanged: #출력(Producer) 채널 (consumer-MSA이름-토픽이름)
           destination: TradingChanged #토픽이름
           contentType: application/json #데이터형식
@@ -23,17 +23,6 @@ spring:
           contentType: application/json #데이터형식
           group: CGR-trade-tradeChanged #consumer 그룹: CGR-MSA이름-토픽이름
       binders:
-        rabbit:
-          defaultCandidate: false
-          inheritEnvironment: false
-          type: rabbit
-          environment:
-            spring:
-              rabbitmq:
-                addresses: inno3t2:4102
-                userName: guest
-                password: guest
-                virtual-host:
         kafka-listen:
           type: kafka
           environment:

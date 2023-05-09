@@ -21,10 +21,6 @@ spring:
           destination: tradeChanged #토픽이름
           contentType: application/json #데이터형식
           group: CGR-trade-tradeChanged #consumer 그룹: CGR-MSA이름-토픽이름
-        in-config:
-          binder: rabbit
-        out-config:
-          binder: rabbit
       binders:
         kafka-listen:
           type: kafka
@@ -37,17 +33,6 @@ spring:
                       brokers: kafka
                       defaultBrokerPort: 9092
                       autoCreateTopics: false
-        rabbit:
-          defaultCandidate: false
-          inheritEnvironment: false
-          type: rabbit
-          environment:
-            spring:
-              rabbitmq:
-                addresses: inno3t2:4102
-                userName: guest
-                password: guest
-                virtual-host:
   datasource:
     url: jdbc:mariadb://mariadb:3306/skmsa_account?useUnicode=true&serverTimezone=Asia/Seoul #[ [3306 -> 4121]
     #   url: jdbc:mysql://vm-mysql13.mysql.database.azure.com:3306/samplea?useUnicode=true&serverTimezone=Asia/Seoul
