@@ -7,6 +7,7 @@ spring:
     config:
       enabled=false: #No spring.config.import property has been defined
     stream:
+      defaultBinder: kafka
       kafka:
         binder:
           brokers: inno3t2

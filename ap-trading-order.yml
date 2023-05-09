@@ -4,8 +4,7 @@
 server.servlet.context-path: /trading
 
 #The default binder to use, if multiple binders are configured. See Multiple Binders on the Classpath.
-#spring.cloud.stream.defaultBinder: kafka
-spring.cloud.stream.defaultBinder: kafka
+# spring.cloud.stream.defaultBinder: kafka
 
 spring:
   application:
@@ -22,6 +21,7 @@ spring:
     hibernate.ddl-auto: update
   cloud:
     stream:
+      defaultBinder: kafka
       bindings:
         out-tradingChanged: #출력(Producer) 채널 (consumer-MSA이름-토픽이름)
           destination: TradingChanged #토픽이름
