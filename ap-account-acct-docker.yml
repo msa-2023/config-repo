@@ -45,7 +45,8 @@ spring:
                 password: guest
                 virtual-host:
   datasource:
-    url: jdbc:mariadb://mariadb:3306/sk_msa?useUnicode=true&serverTimezone=Asia/Seoul    #[ [3306 -> 4121]
+    url: jdbc:mariadb://inno3t2:4121/skmsa_account?useUnicode=true&serverTimezone=Asia/Seoul
+    jdbc-url: jdbc:mariadb://inno3t2:4121/skmsa_account?useUnicode=true&serverTimezone=Asia/Seoul
     #   url: jdbc:mysql://vm-mysql13.mysql.database.azure.com:3306/samplea?useUnicode=true&serverTimezone=Asia/Seoul
     username: user
     password: pwd

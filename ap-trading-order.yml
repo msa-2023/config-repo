@@ -12,7 +12,7 @@ spring:
     name: tradingorder
   mvc:
     pathmatch:
-      matching-strategy: ant_path_matcher #Swagger 관련 수정
+      matching-strategy: ant_path_matcher     #Swagger 관련 수정
   jpa:
     properties:
       hibernate:
@@ -23,14 +23,13 @@ spring:
   cloud:
     stream:
       bindings:
-        out-tradingChanged: #출력(Producer) 채널 (consumer-MSA이름-토픽이름)
-          destination: TradingChanged #토픽이름
-          contentType: application/json #데이터형식
+        out-tradingChanged:   #출력(Producer) 채널 (consumer-MSA이름-토픽이름)
+          destination: TradingChanged   #토픽이름
+          contentType: application/json    #데이터형식
         in-tradeChanged: #입력(Consumer) 채널 (in-토픽이름)
-          destination: tradeChanged #토픽이름
-          contentType: application/json #데이터형식
-          group: CGR-trade-tradeChanged #consumer 그룹: CGR-MSA이름-토픽이름
-
+          destination: tradeChanged   #토픽이름
+          contentType: application/json    #데이터형식
+          group: CGR-trade-tradeChanged  #consumer 그룹: CGR-MSA이름-토픽이름         
 hibernate.dialect: org.hibernate.dialect.MySQLInnoDBDialect
 
 #Prometheus 관련 Application정보 노출
