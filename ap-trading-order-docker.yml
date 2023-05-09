@@ -3,11 +3,6 @@
 server.port: 0
 
 spring:
-  rabbitmq:
-    host: rabbitmq
-    port: 5672
-    username: guest
-    password: guest
   cloud:
     config:
       enabled=true: #No spring.config.import property has been defined
