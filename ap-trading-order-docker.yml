@@ -4,39 +4,18 @@ server.port: 0
 
 spring:
   cloud:
-    config:
-      enabled=true: #No spring.config.import property has been defined
     stream:
-      bindings:
-        out-tradingChanged: #출력(Producer) 채널 (consumer-MSA이름-토픽이름)
-          destination: TradingChanged #토픽이름
-          contentType: application/json #데이터형식
-          binder: kafka-listen
-        in-tradeChanged: #입력(Consumer) 채널 (in-토픽이름)
-          destination: tradeChanged #토픽이름
-          contentType: application/json #데이터형식
-          group: CGR-trade-tradeChanged #consumer 그룹: CGR-MSA이름-토픽이름
-      binders:
-        kafka-listen:
-          type: kafka
-          environment:
-            spring:
-              cloud:
-                stream:
-                  kafka:
-                    binder:
-                      brokers: kafka
-                      defaultBrokerPort: 9092
-                      autoCreateTopics: false
+      kafka:
+        binder:
+          brokers: kafka:9092
+
   datasource:
     url: jdbc:mariadb://mariadb:3306/skmsa_account?useUnicode=true&serverTimezone=Asia/Seoul #[ [3306 -> 4121]
     #   url: jdbc:mysql://vm-mysql13.mysql.database.azure.com:3306/samplea?useUnicode=true&serverTimezone=Asia/Seoul
     username: user
     password: pwd
     hikari.initializationFailTimeout: 30000
-  zipkin:
-    base-url: http://zipkin:9411
-    enabled: true
+
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

@@ -30,6 +30,7 @@ spring:
           destination: tradeChanged #토픽이름
           contentType: application/json #데이터형식
           group: CGR-trade-tradeChanged #consumer 그룹: CGR-MSA이름-토픽이름
+
 hibernate.dialect: org.hibernate.dialect.MySQLInnoDBDialect
 
 #Prometheus 관련 Application정보 노출
