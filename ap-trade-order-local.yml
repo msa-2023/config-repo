@@ -14,23 +14,17 @@ spring:
     stream:
       bindings:
         in-config:
-          binder: rabbit
-#        out-config:1
-#          binder: rabbit
-        # 강의 변경 내역 공유(kafka 변경 내용 등록)
+          binder: kafka-listen
         in-accountAcctChanged: #입력(Consumer) 채널 (in-토픽이름)
           destination: accountAcctChanged   #토픽이름
           contentType: application/json    #데이터형식
           group: CGR-trade-accountAcctChanged  #consumer 그룹: CGR-MSA이름-토픽이름
-          binder: kafka-listen
         out-tradeOrderChanged:   #출력(Producer) 채널 (consumer-MSA이름-토픽이름)
           destination: tradeOrderChanged   #토픽이름
           contentType: application/json    #데이터형식
-          binder: kafka-listen
         out-tradeContractChanged: #출력(Producer) 채널 (consumer-MSA이름-토픽이름)
           destination: tradeContractChanged   #토픽이름
           contentType: application/json    #데이터형식
-          binder: kafka-listen
       binders:
         rabbit:
           defaultCandidate: false
