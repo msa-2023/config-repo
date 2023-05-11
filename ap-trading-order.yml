@@ -3,12 +3,15 @@
 
 server.servlet.context-path: /trading
 
-#The default binder to use, if multiple binders are configured. See Multiple Binders on the Classpath.
+# The default binder to use, if multiple binders are configured. See Multiple Binders on the Classpath.
 # spring.cloud.stream.defaultBinder: kafka
 
 spring:
   application:
     name: tradingorder
+  sleuth:
+    sampler:
+      probability: 1.0
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher #Swagger 관련 수정
@@ -32,11 +35,14 @@ spring:
           group: CGR-trade-tradeChanged #consumer 그룹: CGR-MSA이름-토픽이름
 
 hibernate.dialect: org.hibernate.dialect.MySQLInnoDBDialect
-
+greeting:
+  message: "Welcome to the Simple E-commerce."
+  
 #Prometheus 관련 Application정보 노출
 management.endpoint.metrics.enabled: true
 management.endpoint.prometheus.enabled: true
 management.metrics.export.prometheus.enabled: true
+
 #management.endpoints.web.exposure.include: "*" 3/27일 변경 (sampleb에도 동일하게 추가함)
 management:
   endpoints:
