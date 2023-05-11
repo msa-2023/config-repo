@@ -12,7 +12,9 @@ spring:
         binder:
           brokers: inno3t2
           defaultBrokerPort: 4192
-
+  zipkin:
+    base-url: http://inno3t2:4126
+    enabled: true
   datasource:
     #    url: jdbc:mysql://mysql/samplea?useUnicode=true&serverTimezone=Asia/Seoul
     url: jdbc:mariadb://inno3t2:4121/skmsa_order?useUnicode=true&serverTimezone=Asia/Seoul
