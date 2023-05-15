@@ -1,15 +1,16 @@
 #spring.profiles: default
 #spring.config.activate.on-profile: default_profile
-
+server:
+  port: 0
+  
 server.servlet.context-path: /accountacct
-
-#The default binder to use, if multiple binders are configured. See Multiple Binders on the Classpath.
-#spring.cloud.stream.defaultBinder: kafka
-spring.cloud.stream.defaultBinder: rabbit
 
 spring:
   application:
     name: accountacct
+  sleuth:
+    sampler:
+      probability: 1.0  
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher     #Swagger 관련 수정
@@ -20,13 +21,9 @@ spring:
         format_sql: true
     generate-ddl: true
     hibernate.ddl-auto: update
-#  cloud:
-#    stream:
-#      bindings:
-        # 강의 변경 내역 공유(kafka 변경 내용 등록)
-#        out-accountAcctChanged: #출력(Producer) 채널 (consumer-MSA이름-토픽이름)
-#          destination: accountAcctChanged   #토픽이름
-#          contentType: application/json    #데이터형식
+greeting:
+  message: "Welcome to the Simple E-commerce."    
+
 hibernate.dialect: org.hibernate.dialect.MySQLInnoDBDialect
 
 #Prometheus 관련 Application정보 노출
