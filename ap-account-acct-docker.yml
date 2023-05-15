@@ -64,4 +64,4 @@ eureka:
       defaultZone: http://discovery-service:8761/eureka/  # default addre [8761 -> 4116]
 
 # MONGODB (MongoProperties)
-spring.data.mongodb.uri: mongodb://mongo:27017/SKMSA      #[27017 - 4197]
+spring.data.mongodb.uri: mongodb://mongo:27017/db/SKMSA      #[27017 - 4197]
