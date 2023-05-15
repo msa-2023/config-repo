@@ -1,8 +1,10 @@
 #Docker
 #spring.config.activate.on-profile: docker_profile
-server.port: 0
-
+ 
 spring:
+  zipkin:
+    base-url: http://zipkin:9411
+    enabled: true
   rabbitmq:
     host: rabbitmq
     port: 5672
@@ -50,22 +52,16 @@ spring:
     #   url: jdbc:mysql://vm-mysql13.mysql.database.azure.com:3306/samplea?useUnicode=true&serverTimezone=Asia/Seoul
     username: user
     password: pwd
-    hikari.initializationFailTimeout: 30000
-  zipkin:
-    base-url: http://zipkin:9411
-    enabled: true
+    hikari.initializationFailTimeout: 30000 
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     prefer-ip-address: true
   client:
+    register-with-eureka: true
+    fetch-registry: true  
     service-url:
-      defaultZone: http://apigate-service:8761/eureka  # default addre [8761 -> 4116]
+      defaultZone: http://discovery-service:8761/eureka/  # default addre [8761 -> 4116]
 
 # MONGODB (MongoProperties)
 spring.data.mongodb.uri: mongodb://mongo:27017/SKMSA      #[27017 - 4197]
-
-#Zipkin
-spring.zipkin.base-url: http://zipkin:9411/    #[9411 -> 4126]
-logging.pattern.console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}] [%thread] %-5level %logger{36} - %msg%n"
-
