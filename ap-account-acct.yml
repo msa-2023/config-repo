@@ -7,7 +7,7 @@ server.servlet.context-path: /accountacct
 
 spring:
   application:
-    name: accountacct
+    name: ap-account-acct
   sleuth:
     sampler:
       probability: 1.0  
