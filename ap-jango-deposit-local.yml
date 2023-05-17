@@ -1,0 +1,73 @@
+#Local Exec
+#spring.config.activate.on-profile: local_profile
+server.port: 8172
+
+spring:
+  rabbitmq:
+    host: inno3t2
+    port: 4102      #5672
+    username: guest
+    password: guest
+  cloud:
+    config:
+      enabled=true:   #No spring.config.import property has been defined
+    stream:
+      bindings:
+        in-config:
+          binder: kafka-listen
+        out-jangoChanged: #출력(Producer) 채널 (consumer-MSA이름-토픽이름)
+          destination: jangoTransactionChanged   #토픽이름
+          contentType: application/json    #데이터형식
+          binder: kafka-listen
+      binders:
+        rabbit:
+          defaultCandidate: false
+          inheritEnvironment: false
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                addresses: inno3t2:4102
+                userName: guest
+                password: guest
+                virtual-host:
+        kafka-listen:
+          type: kafka
+          environment:
+            spring:
+              cloud:
+                stream:
+                  kafka:
+                    binder:
+                      brokers: "inno3t2"
+                      defaultBrokerPort: 4192
+                      autoCreateTopics: false
+  datasource:
+    # url: jdbc:mysql://mysql/skmsa_account?useUnicode=true&serverTimezone=Asia/Seoul
+    url: jdbc:mariadb://inno3t2:4121/skmsa_jango?useUnicode=true&serverTimezone=Asia/Seoul
+    jdbc-url: jdbc:mariadb://inno3t2:4121/skmsa_jango?useUnicode=true&serverTimezone=Asia/Seoul
+    #   url: jdbc:mysql://vm-mysql13.mysql.database.azure.com:3306/samplea?useUnicode=true&serverTimezone=Asia/Seoul
+    username: user
+    password: pwd
+    hikari.initializationFailTimeout: 30000
+  zipkin:
+    base-url: http://inno3t2:4126
+    enabled: true
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://inno3t2:4116/eureka   # default addre [8761 -> 4116]
+
+
+# MONGODB (MongoProperties)[27017 - 4197]
+spring.data.mongodb.uri: mongodb://inno3t2:4197/SKMSA
+
+#Zipkin
+#spring.zipkin.base-url: http://inno3t2:4126/    #[9411 -> 4126]
+#logging.pattern.console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}] [%thread] %-5level %logger{36} - %msg%n"
