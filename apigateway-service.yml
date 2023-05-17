@@ -84,11 +84,10 @@ spring:
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/order-service/**
-        - id: account-service
-          #          uri: http://localhost:8081
+        - id: account-service        
           uri: lb://AP-ACCOUNT-ACCT     #Eureka 연동(대문자)
           predicates:
-            - Path=/accountacct/account-service/**
+            - Path=/accountacct/**
         - id: jango-deposit
           #          uri: http://localhost:8081
           uri: lb://AP-JANGO-DEPOSIT     #Eureka 연동(대문자)
