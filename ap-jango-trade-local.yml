@@ -18,6 +18,7 @@ spring:
         out-tradeChanged:   #출력(Producer) 채널 (consumer-MSA이름-토픽이름)
           destination: jangoTradeChanged   #토픽이름
           contentType: application/json    #데이터형식
+          binder: kafka-listen
         in-accountAcctChanged: #입력(Consumer) 채널 (in-토픽이름)
           destination: accountAcctChanged   #토픽이름
           contentType: application/json    #데이터형식
