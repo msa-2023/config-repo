@@ -92,12 +92,12 @@ spring:
           #          uri: http://localhost:8081
           uri: lb://AP-JANGO-DEPOSIT     #Eureka 연동(대문자)
           predicates:
-            - Path=/jangodeposit/**
+            - Path=/jango/**
         - id: jango-trade
           #          uri: http://localhost:8081
           uri: lb://AP-JANGO-TRADE     #Eureka 연동(대문자)
           predicates:
-            - Path=/jango/**    
+            - Path=/jangotrade/**    
         - id: trading-order
           #          uri: http://localhost:8081
           uri: lb://AP-TRADING-ORDER     #Eureka 연동(대문자)
