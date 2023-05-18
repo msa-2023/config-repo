@@ -97,7 +97,7 @@ spring:
           #          uri: http://localhost:8081
           uri: lb://AP-JANGO-TRADE     #Eureka 연동(대문자)
           predicates:
-            - Path=/jangotrade/**    
+            - Path=/jango/**    
         - id: trading-order
           #          uri: http://localhost:8081
           uri: lb://AP-TRADING-ORDER     #Eureka 연동(대문자)
